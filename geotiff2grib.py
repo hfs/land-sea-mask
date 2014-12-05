@@ -24,9 +24,9 @@ def convert(in_file, out_file):
         'typeOfProcessedData': 0, # Analysis
         'typeOfGeneratingProcess': 0, # Analysis
         'centre': 78, # DWD Offenbach
-        'subCentre': 128, # Inofficial
+        'subCentre': 0, # Official... is that ok?
         'bitsPerValue': 1, # Only 0/1 possible
-        'packingType': 'grid_second_order', # Will this get us compression?
+        'packingType': 'grid_complex_spatial_differencing',
     }
 
     dataset = gdal.Open(in_file, GA_ReadOnly)
@@ -55,8 +55,6 @@ def convert(in_file, out_file):
         'iDirectionIncrementInDegrees': pixelWidth,
         'jDirectionIncrementInDegrees': pixelHeight,
     })
-
-    print(keys)
 
     out_grib = grib_clone(template)
 
