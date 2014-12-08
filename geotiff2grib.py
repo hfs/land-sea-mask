@@ -52,8 +52,8 @@ def convert(in_file, out_file):
         'longitudeOfFirstGridPointInDegrees': originX + pixelWidth/2,
         'latitudeOfLastGridPointInDegrees': originY + pixelHeight * rows - pixelHeight/2,
         'longitudeOfLastGridPointInDegrees': originX + pixelWidth * cols - pixelWidth/2,
-        'iDirectionIncrementInDegrees': pixelWidth,
-        'jDirectionIncrementInDegrees': pixelHeight,
+        'iDirectionIncrementInDegrees': abs(pixelWidth),
+        'jDirectionIncrementInDegrees': abs(pixelHeight), # should be positive
     })
 
     out_grib = grib_clone(template)
