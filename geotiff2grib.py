@@ -26,7 +26,7 @@ def convert(in_file, out_file):
         'centre': 78, # DWD Offenbach
         'subCentre': 0, # Official... is that ok?
         'bitsPerValue': 1, # Only 0/1 possible
-        'packingType': 'grid_complex_spatial_differencing',
+        'packingType': 'grid_simple',
     }
 
     dataset = gdal.Open(in_file, GA_ReadOnly)
