@@ -45,11 +45,19 @@ def convert(in_file, out_file):
     # Flatten the array into 1D, row-major mode ("C-like")
     values = values.flatten()
 
+    # Hack (?) to get a GRIB in the longitude range [0, 360]
+    if originX <= 360.0:
+        originX += 360.0
+    longitudeStart = originX + pixelWidth / 2
+    longitudeStart = round(longitudeStart, 2)
+    if longitudeStart == -0.0:
+        longitudeStart = 0.0
+
     keys.update({
         'Ni': cols,
         'Nj': rows,
         'latitudeOfFirstGridPointInDegrees': originY + pixelHeight/2,
-        'longitudeOfFirstGridPointInDegrees': originX + pixelWidth/2,
+        'longitudeOfFirstGridPointInDegrees': longitudeStart,
         'latitudeOfLastGridPointInDegrees': originY + pixelHeight * rows - pixelHeight/2,
         'longitudeOfLastGridPointInDegrees': originX + pixelWidth * cols - pixelWidth/2,
         'iDirectionIncrementInDegrees': abs(pixelWidth),
